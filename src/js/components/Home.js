@@ -1,14 +1,30 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import {connect} from 'react-redux'
-import {addInputs, subtractInputs} from '../actions/calculatorActions'
-
+import axios from 'axios'
+import {addInputs, subtractInputs, getDevelopers} from '../actions/calculatorActions'
 const mapStateToProps = (state) => ({
   output:state.output
 })
 
 
 export class Home extends React.Component{
+
+
+	constructor(props) {
+		super(props);
+		this.handleRequest = this.handleRequest.bind(this)
+	}
+
+	handleRequest() {
+		this.props.dispatch(getDevelopers());
+		// axios.get('/users')
+		// 	.then(res => {
+		// 		console.log('Res ----> ', res)
+		// 	})
+		// 	.catch(err => console.log('Err ----> ', err))
+	}
+
 	render(){
 		let IntegerA,IntegerB,IntegerC,IntegerD;
 
@@ -50,8 +66,11 @@ export class Home extends React.Component{
 					  }
 					}>Subtract</button>
 				</div>
-				
+
 				<hr/>
+				<div>
+					<button onClick={this.handleRequest}>Press For Request</button>
+				</div>
 			</div>
 		);
 	}

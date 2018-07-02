@@ -11,3 +11,14 @@ export const subtractInputs = (output) => {
         output: output 
     }
 }
+
+export const getDevelopers = () => {
+    return {
+        type: 'LOAD',
+        payload: {
+            request: {
+                url: '/users'
+            }
+        }
+    }
+}
